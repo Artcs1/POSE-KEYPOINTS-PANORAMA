@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="descripction"
+        content="GauCho: Gaussian Distributions with Cholesky Decomposition for Oriented Object Detection">
+  <meta name="keywords" content="oriented object detection, benchmark, localization loss, gaussians">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GauCho: Gaussian Distributions with Cholesky Decomposition for Oriented Object Detection</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+
+<!--       <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div> -->
+<!--     </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">GauCho: Gaussian Distributions with Cholesky Decomposition for Oriented Object Detection</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="http://linkedin.com/in/jos%C3%A9-henrique-lima-marques/">José Henrique Lima Marques</a><sup>2</sup>,</span>
+              <span class="author-block">
+              
+              <span class="author-block">
+                <a href="https://artcs1.github.io/">Jeffri Murrugarra-Llerena</a><sup>1</sup>,</span>
+              <span class="author-block">
+
+              <span class="author-block">
+                <a href="https://www.inf.ufrgs.br/~crjung/index.html">Claudio R. Jung</a><sup>2</sup>,</span>
+              <span class="author-block">
+                
+            </div>
+
+            <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Stony Brook University,</span>
+                <span class="author-block"><sup>2</sup>Federal University of Rio Grande do Sul</span>
+            </div>
+            <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                Conference on Computer Vision and Pattern Recognition (CVPR) 2025</span>
+            </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2502.01565"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Marques_GauCho_Gaussian_Distributions_with_Cholesky_Decomposition_for_Oriented_Object_Detection_CVPR_2025_paper.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Proceedings</span>
+                </a>
+              </span>
+              
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+
+              <span class="link-block">
+                <a href="https://github.com/jhlmarques/GauCho"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                 <a href="https://github.com/robingg1/PoseTraj"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Comparison</h2>
+      
+
+      <!-- 第二排 -->
+      <div class="columns is-multiline is-centered">
+        <div class="column">
+          <img src="./static/images/rot122_oe_42.88_dets_100001642.png" alt="Image">
+          <h4 class="subtitle has-text-centered">FCOS-Baseline</h4>
+        </div>
+        <div class="column">
+          <img src="./static/images/rot122_oe_6.85_dets_100001642.png" alt="Gemini">
+          <h4 class="subtitle has-text-centered">FCOS-GauCho</h4>
+        </div>
+        <div class="column">
+          <img src="./static/images/rot170_oe_4.74_dets_100001533.png" alt="GPT4">
+          <h4 class="subtitle has-text-centered">FCOS-Baseline</h4>
+        </div>
+        <div class="column">
+          <img src="./static/images/rot170_oe_44.11_dets_100001533.png" alt="MistralOCR">
+          <h4 class="subtitle has-text-centered">FCOS-GauCho</h4>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Oriented Object Detection (OOD) has received increased attention in the past years, being a suitable solution for detecting elongated objects in remote sensing analysis. In particular, using regression loss functions based on Gaussian distributions has become attractive since they yield simple and differentiable terms. However, existing solutions are still based on regression heads that produce Oriented Bounding Boxes (OBBs), and the known problem of angular boundary discontinuity persists. In this work, we propose a regression head for OOD that directly produces Gaussian distributions based on the Cholesky matrix decomposition. The proposed head, named GauCho, theoretically mitigates the boundary discontinuity problem and is fully compatible with recent Gaussian-based regression loss functions. Furthermore, we advocate using Oriented Ellipses (OEs) to represent oriented objects, which relates to GauCho through a bijective function and alleviates the encoding ambiguity problem for circular objects. Our experimental results show that GauCho can be a viable alternative to the traditional OBB head, achieving results comparable to or better than state-of-the-art detectors for the challenging dataset DOTA.
+            
+          </p>
+        </div>
+            <div class="publication-image">
+            <img src="./static/images/example.png" alt="Description of the image">
+            </div>
+      </div>
+    </div>
+
+    
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+            <h2 class="title is-3">Approach</h2>
+            <div class="content has-text-justified">
+            <p>
+            GauCho detects oriented objects with typical representations or Oriented Ellipses. It relies on a novel regression head designed to directly predict the parameters of 2D Gaussian distributions through the Cholesky decomposition of their covariance matrices, which theoretically mitigates the boundary discontinuity problem.
+            </p>
+            </div>
+            <div class="publication-image">
+            <img src="./static/images/approach.png" alt="Description of the image">
+            </div>
+        </div>
+    </div>
+
+    
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+            <h2 class="title is-3">Results</h2>
+            <div class="content has-text-justified">
+              <p>
+              
+              We adapted different OOD approaches to add the GauCho head: FCOS, RetinaNet, R<sup>3</sup>Det, and RoI-Transformer. Result below used  ResNet-50 (R-50) backbone as default for all detectors. 
+              For all detectors, we generated results using different Gaussian-based loss functions: GWD, KLD and ProbIoU.
+            
+              </p>
+            </div>
+            <div class="publication-image">
+                <img src="./static/images/results.png" alt="Description of the image">
+            </div>
+        
+            <div class="content has-text-justified">
+              <p>
+              
+              We achieved SOTA results in DOTAv1.
+            
+              </p>
+            </div>
+            <div class="publication-image">
+                <img src="./static/images/SOTA.png" alt="Description of the image">
+            </div>
+
+          
+        
+        </div>
+    </div>
+  </div>
+
+
+  
+  
+</section>
+
+  
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@InProceedings{Marques_2025_CVPR,
+    author    = {Marques, Jos&eacute Henrique Lima and Murrugarra-Llerena, Jeffri and Jung, Claudio R.},
+    title     = {GauCho: Gaussian Distributions with Cholesky Decomposition for Oriented Object Detection},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2025},
+    pages     = {3593-3602}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            We borrow the source code of this website from Nerfies <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>. Last update: March 2025.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
